@@ -3,7 +3,9 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         //use case : 1 welcome message
-        System.out.println("Welcome to Palindrome Checker APP Management system.");
+        System.out.println("Welcome to the Palindrome Checker  Management System");
+        System.out.println("Version 1.0");
+        System.out.println("System initialized successfully.");
 
     }
 }
