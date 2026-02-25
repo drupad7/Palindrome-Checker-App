@@ -1,25 +1,27 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 
-    // use case : 4   Character Array Based Palindrome Check
+    // use case : Stack-Based Palindrome Checker
+
  public class PalindromeCheckerApp {
 
           public static boolean isPalindrome(String str) {
 
-              // Convert the string into character array
+             Stack<Character> stack = new Stack<>();
 
-              char[] arr = str.toCharArray();
-              int left = 0;
-              int right = arr.length - 1;
+             // Step : 1 Pushing all the characters into stack
 
-              // Two pointer comparison
+              for (int i=0;i<str.length();i++){
+                  stack.push(str.charAt(i));
+              }
 
-              while (left < right) {
-                  if (arr[left] != arr[right]) {
+              // Step : 2 Pop and comparing
+
+              for(int i=0;i<str.length();i++){
+                  if(str.charAt(i) != stack.pop()){
                       return false;
                   }
-                  left++;
-                  right--;
               }
               return true;
           }
