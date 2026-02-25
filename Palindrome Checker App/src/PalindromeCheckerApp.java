@@ -1,28 +1,31 @@
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 
-    // use case : Stack-Based Palindrome Checker
+    // use case : Queue + Stack Based Palindrome Check
 
  public class PalindromeCheckerApp {
 
           public static boolean isPalindrome(String str) {
 
              Stack<Character> stack = new Stack<>();
+             Queue<Character> queue = new LinkedList<>();
 
-             // Step : 1 Pushing all the characters into stack
+             // Step : 1 Inserting characters into Queue and Stack
 
               for (int i=0;i<str.length();i++){
                   stack.push(str.charAt(i));
+                  queue.add(str.charAt(i));
               }
 
-              // Step : 2 Pop and comparing
+              // Step : 2 Comparing and pop for stack , for queue remove
 
-              for(int i=0;i<str.length();i++){
-                  if(str.charAt(i) != stack.pop()){
-                      return false;
-                  }
-              }
+            while(!queue.isEmpty()){
+                if(queue.remove() != stack.pop())
+                    return false;
+            }
               return true;
           }
           public static void main(String[] args) {
@@ -31,6 +34,7 @@ import java.util.Stack;
 
          System.out.println("Enter a string: ");
          String input = sc.nextLine();
+
 
               if (isPalindrome(input)) {
                   System.out.println("It is a Palindrome.");
