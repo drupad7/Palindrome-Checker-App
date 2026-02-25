@@ -1,15 +1,45 @@
 import java.util.Scanner;
-import java.util.Deque;
-import java.util.LinkedList;
 
-
-    // use case 7 : Deque-Based Optimized Palindrome Checker
+    // use case 8 : Linked List Based Palindrome Checker
 
  public class PalindromeCheckerApp {
 
-          public static boolean isPalindrome(String str) {
+     static class Node {
+         char data;
+         Node next;
 
-             Deque<Character> deque = new LinkedList<>();
+         Node(char data) {
+             this.data = data;
+             this.next = null;
+         }
+     }
+
+     // Step 1 : Converting the string into linked list
+     public static  Node  createLinkedList(String str){
+         Node head = null , tail = null;
+
+         for(char c: str.toCharArray()){
+             Node = newNode = new Node(c);
+
+             if(head == null){
+                 head = newNode;
+                 tail = newNode;
+             }else{
+                 tail.next = newNode;
+                 tail = newNode;
+             }
+         }
+         return  head;
+     }
+
+     // Step 2 : Checking Palindrome
+          public static boolean isPalindrome(Node head) {
+
+           if(head == null) || head.next == null)
+              return true;
+
+            Node slow = head;
+            Node fast = head;
 
 
              // Step : 1 Inserting characters into Deque
