@@ -1,67 +1,29 @@
 import java.util.Scanner;
 
-// Use Case 8: Linked List Based Palindrome Checker
+// Use Case 10 : Case-Insensitive & Space-Ignored Palindrome Checker
 
 public class PalindromeCheckerApp {
 
-    // Node class for Singly Linked List
-    static class Node {
-        char data;
-        Node next;
-
-        Node(char data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-
-    // Function to check palindrome
     public static boolean isPalindrome(String str) {
 
-        // Step 1: Convert string to linked list
-        Node head = null, tail = null;
+        // Step 1: Normalize string (remove spaces & convert to lowercase)
+        str = str.replaceAll("\\s+", "").toLowerCase();
 
-        for (char c : str.toCharArray()) {
-            Node newNode = new Node(c);
+        // Step 2: Convert to char array
+        char[] arr = str.toCharArray();
 
-            if (head == null) {
-                head = tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
-            }
-        }
+        int start = 0;
+        int end = arr.length - 1;
 
-        // Step 2: Find middle using fast & slow pointer
-        Node slow = head;
-        Node fast = head;
+        // Step 3: Compare characters
+        while (start < end) {
 
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        // Step 3: Reverse second half
-        Node prev = null;
-        Node current = slow;
-
-        while (current != null) {
-            Node next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-
-        // Step 4: Compare first half and reversed second half
-        Node firstHalf = head;
-        Node secondHalf = prev;
-
-        while (secondHalf != null) {
-            if (firstHalf.data != secondHalf.data) {
+            if (arr[start] != arr[end]) {
                 return false;
             }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+
+            start++;
+            end--;
         }
 
         return true;
